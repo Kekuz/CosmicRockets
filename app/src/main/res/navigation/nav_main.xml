@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/rocketsFragment"
-        android:name="com.cosmicrockets.RocketFragment"
+        android:name="com.cosmicrockets.ui.rocket.RocketFragment"
         android:label="fragment_rockets"
         tools:layout="@layout/fragment_rocket" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/launchesFragment"
-        android:name="com.cosmicrockets.LaunchesFragment"
+        android:name="com.cosmicrockets.ui.launches.LaunchesFragment"
         android:label="fragment_launches"
         tools:layout="@layout/fragment_launches" />
 </navigation>

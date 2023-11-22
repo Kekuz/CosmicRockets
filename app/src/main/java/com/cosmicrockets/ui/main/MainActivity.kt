@@ -1,19 +1,19 @@
-package com.cosmicrockets
+package com.cosmicrockets.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
 import com.cosmicrockets.databinding.ActivityMainBinding
+import com.cosmicrockets.ui.rocket.RocketFragment
+import com.cosmicrockets.ui.rocket.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 
     //Чтобы получить этот список, мы дерзко идем в сеть и узнаем, какие у нас есть ракеты
     private val fragList = listOf(
-        RocketFragment(),
-        RocketFragment(),
-        RocketFragment(),
+        RocketFragment("Ракета 1"),
+        RocketFragment("Ракета 2"),
+        RocketFragment("Ракета 3"),
     )
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
