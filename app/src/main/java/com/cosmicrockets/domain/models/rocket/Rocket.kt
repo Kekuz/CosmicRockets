@@ -1,10 +1,12 @@
 package com.cosmicrockets.domain.models.rocket
 
 data class Rocket(
+    val name: String,
+    val image: String,
     val height: Height,
     val diameter: Diameter,
     val mass: Mass,
-    val payloadWeights: List<PayloadWeight>,
+    val payloadWeight: PayloadWeight,
     val firstFlight: String,
     val country: String,
     val costPerLaunch: Int,

@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.cosmicrockets.databinding.FragmentLaunchesBinding
 import com.cosmicrockets.databinding.FragmentRocketBinding
+import com.cosmicrockets.domain.models.rocket.Rocket
 
 
-class RocketFragment(private val name: String) : Fragment() {
+class RocketFragment(private val rocket: Rocket) : Fragment() {
     private lateinit var binding: FragmentRocketBinding
 
 
@@ -24,6 +25,6 @@ class RocketFragment(private val name: String) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //binding.name.text = name
+        binding.name.text = rocket.name
     }
 }
