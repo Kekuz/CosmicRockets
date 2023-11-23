@@ -4,16 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".ui.launches.LaunchesFragment">
 
+    <ImageView
+        android:id="@+id/back_iv"
+        android:layout_width="13dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/back_arrow_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
+        android:id="@+id/back_tv"
+        style="@style/normal_info_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Launches"
-        android:textSize="25dp"
+        android:layout_marginStart="8dp"
+        android:text="Назад"
+        app:layout_constraintBottom_toBottomOf="@+id/back_iv"
+        app:layout_constraintStart_toEndOf="@+id/back_iv"
+        app:layout_constraintTop_toTopOf="@+id/back_iv" />
+
+    <View
+        android:id="@+id/back_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/back_tv"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="-16dp"
+        android:layout_marginEnd="-16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/back_tv" />
+
+
+    <TextView
+        android:id="@+id/rocket_name_tv"
+        style="@style/normal_info_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Falcon Heavy"
+        app:layout_constraintBottom_toBottomOf="@+id/back_iv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/back_iv" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_marginTop="48dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/rocket_name_tv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
