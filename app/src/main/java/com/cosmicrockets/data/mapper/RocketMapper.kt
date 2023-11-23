@@ -79,6 +79,6 @@ object RocketMapper {
 
     private const val LOW_EARTH_ORBIT = "leo"
     private const val EMPTY_STRING = "-"
-    private const val EMPTY_NUMBER_DOUBLE = 0.0
-    private const val EMPTY_NUMBER_INT = 0
+    private const val EMPTY_NUMBER_DOUBLE = -1.0
+    private const val EMPTY_NUMBER_INT = -1
 }
