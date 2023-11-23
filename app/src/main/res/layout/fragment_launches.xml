@@ -52,12 +52,15 @@
         app:layout_constraintTop_toTopOf="@+id/back_iv" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:paddingHorizontal="32dp"
         android:layout_width="match_parent"
         android:layout_marginTop="48dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rocket_name_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/rocket_name_tv"
+        tools:listitem="@layout/launch_view"
+        tools:itemCount="3"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
