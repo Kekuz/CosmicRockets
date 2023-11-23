@@ -9,6 +9,7 @@ import com.cosmicrockets.domain.models.rocket.Rocket
 import com.cosmicrockets.presentation.mapper.RocketInfoMapper
 import com.cosmicrockets.presentation.models.RocketInfo
 import com.cosmicrockets.ui.rocket.RocketFragment
+import com.cosmicrockets.ui.state.RocketsVPFragmentState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,33 +17,34 @@ import kotlinx.coroutines.launch
 class RocketsVPViewModel(
     private val searchRocketsUseCase: SearchRocketsUseCase,
 ) : ViewModel() {
-    private val _rocketFragmentsLiveData = MutableLiveData<List<RocketFragment>>()
-    val rocketFragmentsLiveData: LiveData<List<RocketFragment>> = _rocketFragmentsLiveData
 
-    private val _placeholderLiveData = MutableLiveData<String>()
-    val placeholderLiveData: LiveData<String> = _placeholderLiveData
+    private val _state = MutableLiveData<RocketsVPFragmentState>()
+    val state: LiveData<RocketsVPFragmentState> = _state
+
 
     init {
         request()
     }
 
-    private fun request() {
+    fun request() {
+        _state.value = RocketsVPFragmentState.Loading
+
         searchRocketsUseCase.execute(object : SearchRocketsUseCase.RocketConsumer {
             override fun consume(foundRockets: List<Rocket>?, errorMessage: String?) {
                 CoroutineScope(Dispatchers.IO).launch {
                     if (foundRockets != null) {
                         //Log.e("Response", foundRockets.toString())
-
-                        _rocketFragmentsLiveData.postValue(getFragmentsFrom(foundRockets.map {
+                        val rocketFragments = getFragmentsFrom(foundRockets.map {
                             RocketInfoMapper.map(
                                 it
                             )
-                        }))
+                        })
+                        val content = RocketsVPFragmentState.Content(rocketFragments)
+                        _state.postValue(content)
                     }
                     if (errorMessage != null) {
-                        _placeholderLiveData.postValue(errorMessage.toString())
-                    } else {
-                        _placeholderLiveData.postValue("-")
+                        val error = RocketsVPFragmentState.Error(errorMessage)
+                        _state.postValue(error)
                     }
                 }
             }

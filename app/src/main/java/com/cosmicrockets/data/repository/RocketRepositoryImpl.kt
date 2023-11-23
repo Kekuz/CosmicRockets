@@ -14,7 +14,7 @@ class RocketRepositoryImpl(private val networkClient: NetworkClient) : RocketRep
         //Log.e("response result:", response.resultCode.toString())
         return when (response.resultCode) {
             -1 -> {
-                Resource.Error("Check internet connection")
+                Resource.Error("Проверьте соединение с интернетом")
             }
 
             200 -> {
@@ -24,7 +24,7 @@ class RocketRepositoryImpl(private val networkClient: NetworkClient) : RocketRep
                 })
             }
 
-            else -> Resource.Error("Server error")
+            else -> Resource.Error("Ошибка сервера")
         }
     }
 }

@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
@@ -31,5 +32,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:indeterminateTint="@color/dark_gray"
+        android:id="@+id/rocket_loading_pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/tabLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/error_tv"
+        android:visibility="gone"
+        style="@style/error_text_style"
+        android:layout_marginHorizontal="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/tabLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Ошибка" />
+
+    <Button
+        android:id="@+id/reload_btn"
+        style="@style/button_text_style"
+        android:layout_width="wrap_content"
+        android:paddingHorizontal="32dp"
+        android:layout_height="72dp"
+        android:text="Обновить"
+        android:visibility="gone"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/error_tv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
