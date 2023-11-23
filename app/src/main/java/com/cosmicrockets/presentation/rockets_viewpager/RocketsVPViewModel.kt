@@ -1,10 +1,9 @@
-package com.cosmicrockets.presentation.main
+package com.cosmicrockets.presentation.rockets_viewpager
 
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
 import com.cosmicrockets.domain.api.usecase.SearchRocketsUseCase
 import com.cosmicrockets.domain.models.rocket.Rocket
 import com.cosmicrockets.presentation.mapper.RocketInfoMapper
@@ -14,20 +13,20 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
-class MainViewModel(
+class RocketsVPViewModel(
     private val searchRocketsUseCase: SearchRocketsUseCase,
-): ViewModel() {
-
+) : ViewModel() {
     private val _rocketFragmentsLiveData = MutableLiveData<List<RocketFragment>>()
     val rocketFragmentsLiveData: LiveData<List<RocketFragment>> = _rocketFragmentsLiveData
 
     private val _placeholderLiveData = MutableLiveData<String>()
     val placeholderLiveData: LiveData<String> = _placeholderLiveData
+
     init {
         request()
     }
-    private fun request(){
+
+    private fun request() {
         searchRocketsUseCase.execute(object : SearchRocketsUseCase.RocketConsumer {
             override fun consume(foundRockets: List<Rocket>?, errorMessage: String?) {
                 CoroutineScope(Dispatchers.IO).launch {
@@ -50,9 +49,10 @@ class MainViewModel(
 
         })
     }
-    private fun getFragmentsFrom(rockets: List<RocketInfo>): List<RocketFragment>{
+
+    private fun getFragmentsFrom(rockets: List<RocketInfo>): List<RocketFragment> {
         val rocketFragments = mutableListOf<RocketFragment>()
-        for (r in rockets){
+        for (r in rockets) {
             val fragment = RocketFragment()
             val bundle = Bundle()
             bundle.putParcelable("rocket", r)
@@ -61,5 +61,4 @@ class MainViewModel(
         }
         return rocketFragments
     }
-
 }

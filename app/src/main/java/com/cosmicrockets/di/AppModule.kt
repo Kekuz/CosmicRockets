@@ -2,7 +2,7 @@ package com.cosmicrockets.di
 
 import android.content.Context
 import com.cosmicrockets.domain.api.usecase.SearchRocketsUseCase
-import com.cosmicrockets.presentation.main.MainFactory
+import com.cosmicrockets.presentation.rockets_viewpager.RocketsVPFactory
 import dagger.Module
 import dagger.Provides
 
@@ -14,7 +14,7 @@ class AppModule(val context: Context) {
     }
 
     @Provides
-    fun provideMainFactory(searchRocketsUseCase: SearchRocketsUseCase): MainFactory {
-        return MainFactory(searchRocketsUseCase)
+    fun provideRocketsVPFactory(searchRocketsUseCase: SearchRocketsUseCase): RocketsVPFactory {
+        return RocketsVPFactory(searchRocketsUseCase)
     }
 }

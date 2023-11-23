@@ -3,20 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/rocketsFragment">
+    app:startDestination="@id/rocketsVPFragment">
 
-    <fragment
-        android:id="@+id/rocketsFragment"
-        android:name="com.cosmicrockets.ui.rocket.RocketFragment"
-        android:label="fragment_rockets"
-        tools:layout="@layout/fragment_rocket" >
-        <action
-            android:id="@+id/action_rocketsFragment_to_launchesFragment"
-            app:destination="@id/launchesFragment" />
-    </fragment>
     <fragment
         android:id="@+id/launchesFragment"
         android:name="com.cosmicrockets.ui.launches.LaunchesFragment"
         android:label="fragment_launches"
         tools:layout="@layout/fragment_launches" />
+    <fragment
+        android:id="@+id/rocketsVPFragment"
+        android:name="com.cosmicrockets.ui.viewpager.RocketsVPFragment"
+        android:label="RocketsVPFragment" >
+        <action
+            android:id="@+id/action_rocketsVPFragment_to_launchesFragment"
+            app:destination="@id/launchesFragment" />
+    </fragment>
 </navigation>

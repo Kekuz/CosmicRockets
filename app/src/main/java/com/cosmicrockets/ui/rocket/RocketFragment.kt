@@ -71,11 +71,7 @@ class RocketFragment : Fragment() {
             bundle.putString("name", rocket?.name)
             bundle.putString("id",rocket?.id)
 
-            val launchesFragment = LaunchesFragment()
-
-            //Говно
-            parentFragmentManager.beginTransaction().replace(R.id.viewPager, launchesFragment).commit()
-            //findNavController().navigate(R.id.action_rocketsFragment_to_launchesFragment, bundle)
+            findNavController().navigate(R.id.action_rocketsVPFragment_to_launchesFragment, bundle)
         }
 
     }
