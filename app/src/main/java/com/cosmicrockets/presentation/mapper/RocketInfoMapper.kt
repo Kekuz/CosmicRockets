@@ -8,6 +8,7 @@ object RocketInfoMapper {
     fun map(rocket: Rocket): RocketInfo {
         val rocketInfo =
             RocketInfo(
+                rocket.id,
                 rocket.name,
                 rocket.image,
                 checkNullNumber(rocket.height.meters),

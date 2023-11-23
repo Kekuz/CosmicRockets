@@ -20,10 +20,8 @@
         app:tabGravity="center"
         app:tabIndicator="@null"
         app:tabPaddingEnd="8dp"
-        app:tabPaddingStart="8dp">
+        app:tabPaddingStart="8dp"/>
 
-
-    </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"

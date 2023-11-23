@@ -5,6 +5,7 @@ import android.os.Parcelable
 
 
 data class RocketInfo(
+    val id: String?,
     val name: String?,
     val image: String?,
     val heightMeters: String?,
@@ -44,11 +45,13 @@ data class RocketInfo(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
+        parcel.readString(),
         parcel.readString()
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(id)
         parcel.writeString(name)
         parcel.writeString(image)
         parcel.writeString(heightMeters)

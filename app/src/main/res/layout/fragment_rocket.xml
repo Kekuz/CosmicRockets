@@ -14,7 +14,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/scrollBar"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="500dp"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
             app:titleCollapseMode="scale">
 
@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/mockup_rocket"
+                android:background="@color/light_black"
                 app:layout_collapseMode="parallax" />
 
             <View
@@ -73,10 +73,11 @@
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/horizontal_rv"
+                android:id="@+id/rocket_info_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:paddingStart="32dp"
+                android:clipToPadding = "false"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -94,7 +95,7 @@
                 android:layout_marginStart="32dp"
                 style="@style/normal_text_style"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/horizontal_rv" />
+                app:layout_constraintTop_toBottomOf="@id/rocket_info_rv" />
 
             <TextView
                 android:id="@+id/firstFlight_tv"
@@ -170,7 +171,7 @@
 
             <TextView
                 android:id="@+id/first_engines_tv"
-                style="@style/normal_info_text_style"
+                style="@style/normal_title_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="27"
@@ -189,7 +190,7 @@
 
             <TextView
                 android:id="@+id/first_fuel_amount_tons_tv"
-                style="@style/normal_info_text_style"
+                style="@style/normal_title_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="308,6"
@@ -219,7 +220,7 @@
 
             <TextView
                 android:id="@+id/first_burn_time_sec_tv"
-                style="@style/normal_info_text_style"
+                style="@style/normal_title_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="593"
@@ -265,7 +266,7 @@
 
             <TextView
                 android:id="@+id/second_engines_tv"
-                style="@style/normal_info_text_style"
+                style="@style/normal_title_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
@@ -284,7 +285,7 @@
 
             <TextView
                 android:id="@+id/second_fuel_amount_tons_tv"
-                style="@style/normal_info_text_style"
+                style="@style/normal_title_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="243,2"
@@ -314,7 +315,7 @@
 
             <TextView
                 android:id="@+id/second_burn_time_sec_tv"
-                style="@style/normal_info_text_style"
+                style="@style/normal_title_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="397"
@@ -334,12 +335,12 @@
 
 
             <Button
+                style="@style/button_text_style"
                 android:id="@+id/launchesButton"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:backgroundTint="@color/dark_gray"
+                android:layout_height="72dp"
                 android:layout_marginHorizontal="32dp"
-                android:text="Посмотреть загрузки"
+                android:text="Посмотреть запуски"
                 android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

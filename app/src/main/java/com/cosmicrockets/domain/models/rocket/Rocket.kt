@@ -1,6 +1,7 @@
 package com.cosmicrockets.domain.models.rocket
 
 data class Rocket(
+    val id: String,
     val name: String,
     val image: String,
     val height: Height,

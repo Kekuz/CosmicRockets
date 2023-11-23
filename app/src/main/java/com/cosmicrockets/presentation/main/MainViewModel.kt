@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
 import com.cosmicrockets.domain.api.usecase.SearchRocketsUseCase
 import com.cosmicrockets.domain.models.rocket.Rocket
 import com.cosmicrockets.presentation.mapper.RocketInfoMapper

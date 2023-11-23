@@ -3,6 +3,7 @@ package com.cosmicrockets.ui.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import com.cosmicrockets.app.App
 import com.cosmicrockets.databinding.ActivityMainBinding
 import com.cosmicrockets.presentation.main.MainFactory
@@ -14,6 +15,8 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var mainFactory: MainFactory
+
+    private lateinit var navController: NavController
 
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding

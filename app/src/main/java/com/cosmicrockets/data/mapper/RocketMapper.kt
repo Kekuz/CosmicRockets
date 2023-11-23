@@ -18,6 +18,7 @@ import com.cosmicrockets.domain.models.rocket.SecondStage
 object RocketMapper {
     fun map(input: RocketDto): Rocket {
         return Rocket(
+            input.id,
             input.name ?: EMPTY_STRING,
             input.flickrImages?.get(0) ?: EMPTY_STRING,
             heightMapper(input.height),
