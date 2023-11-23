@@ -5,7 +5,4 @@
         android:topRightRadius="32dp" />
     <solid android:color="@color/black" />
 
-
-
-
 </shape>
