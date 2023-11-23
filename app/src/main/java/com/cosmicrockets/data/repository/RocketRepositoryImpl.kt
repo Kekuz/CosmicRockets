@@ -16,14 +16,15 @@ import com.cosmicrockets.domain.util.Resource
 class RocketRepositoryImpl(private val networkClient: NetworkClient) : RocketRepository {
     override fun search(): Resource<List<Rocket>> {
         val response = networkClient.doRequest("rocket_request")
-        Log.e("response result:", response.resultCode.toString())
+        //Log.e("response result:", response.resultCode.toString())
         return when (response.resultCode) {
             -1 -> {
                 Resource.Error("Check internet connection")
             }
 
             200 -> {
-                Resource.Success((response as RocketSearchResponse).docs.map {
+                Log.e("Response",(response as RocketSearchResponse).docs.toString() )
+                return Resource.Success((response as RocketSearchResponse).docs.map {
                     RocketMapper.map(it)
                 })
             }

@@ -9,11 +9,16 @@ data class RocketDto(
     val height: HeightDto?,
     val diameter: DiameterDto?,
     val mass: MassDto?,
-    val payloadWeights: List<PayloadWeightDto>?,
+    @SerializedName("payload_weights")
+    val payloadWeights: List<PayloadWeightDto>?,//Нету
+    @SerializedName("first_flight")
     val firstFlight: String?,
     val country: String?,
+    @SerializedName("cost_per_launch")
     val costPerLaunch: Int?,
-    val firstStage: FirstStageDto?,
-    val secondStage: SecondStageDto?,
+    @SerializedName("first_stage")
+    val firstStage: FirstStageDto?,//Нету
+    @SerializedName("second_stage")
+    val secondStage: SecondStageDto?,//Нету
 
     )

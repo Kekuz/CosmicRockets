@@ -5,11 +5,8 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.cosmicrockets.app.App
 import com.cosmicrockets.databinding.ActivityMainBinding
-import com.cosmicrockets.domain.models.rocket.Rocket
 import com.cosmicrockets.presentation.main.MainFactory
 import com.cosmicrockets.presentation.main.MainViewModel
-import com.cosmicrockets.presentation.mapper.RocketFragmentMapper
-import com.cosmicrockets.ui.rocket.RocketFragment
 import com.cosmicrockets.ui.rocket.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import javax.inject.Inject
