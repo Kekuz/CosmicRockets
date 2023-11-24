@@ -34,6 +34,7 @@
         android:layout_height="0dp"
         android:layout_marginEnd="-16dp"
         android:layout_marginBottom="-16dp"
+        android:foreground="?attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="@+id/back_tv"
         app:layout_constraintEnd_toEndOf="@id/back_tv"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,34 +59,34 @@
         android:layout_marginTop="48dp"
         android:paddingHorizontal="32dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@id/launches_loading_bottom_pb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rocket_name_tv"
-        tools:itemCount="2"
-        app:layout_constrainedHeight="true"
         app:layout_constraintVertical_bias="0"
+        tools:itemCount="2"
         tools:listitem="@layout/launch_view" />
 
     <ProgressBar
-        android:visibility="gone"
         android:id="@+id/launches_loading_bottom_pb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/dark_gray"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
-        android:visibility="gone"
         android:id="@+id/launches_loading_pb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/dark_gray"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
