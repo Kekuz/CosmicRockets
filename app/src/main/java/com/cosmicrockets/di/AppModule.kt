@@ -1,7 +1,9 @@
 package com.cosmicrockets.di
 
 import android.content.Context
+import com.cosmicrockets.domain.api.usecase.SearchLaunchByIdUseCase
 import com.cosmicrockets.domain.api.usecase.SearchRocketsUseCase
+import com.cosmicrockets.presentation.launches.LaunchFactory
 import com.cosmicrockets.presentation.rockets_viewpager.RocketsVPFactory
 import dagger.Module
 import dagger.Provides

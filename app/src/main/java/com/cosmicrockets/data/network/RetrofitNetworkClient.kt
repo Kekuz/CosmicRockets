@@ -6,6 +6,7 @@ import android.net.NetworkCapabilities
 import android.util.Log
 import com.cosmicrockets.data.NetworkClient
 import com.cosmicrockets.data.network.dto.Response
+import com.cosmicrockets.data.network.dto.launch.LaunchSearchRequest
 import com.cosmicrockets.data.network.dto.rocket.RocketSearchResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -30,6 +31,12 @@ class RetrofitNetworkClient(private val context: Context) : NetworkClient {
             if (dto == "rocket_request") {
                 val resp = spaceXService.searchRockets().execute()
                 val body = resp.body()
+                return body?.apply { resultCode = 200 } ?: Response().apply { resultCode = resp.code() }
+            }
+            if (dto is LaunchSearchRequest) {
+                val resp = spaceXService.searchLaunches(dto.body).execute()
+                val body = resp.body()
+
                 return body?.apply { resultCode = 200 } ?: Response().apply { resultCode = resp.code() }
             }
         }catch (e: Exception){

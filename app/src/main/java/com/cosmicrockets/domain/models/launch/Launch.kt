@@ -4,5 +4,5 @@ data class Launch(
     val rocketId: String,
     var name: String,
     val date: String,
-    val success: Boolean,
+    val success: Boolean?,
 )

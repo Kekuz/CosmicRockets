@@ -11,11 +11,14 @@ class LaunchViewHolder(private val binding: LaunchViewBinding) :
 
         launchNameTv.text = model.name
         launchDateTv.text = model.date
-        if(model.success){
-            successIv.setBackgroundResource(R.drawable.launch_successful)
-        }else{
-            successIv.setBackgroundResource(R.drawable.launch_failed)
+        if(model.success != null){
+            if(model.success){
+                successIv.setBackgroundResource(R.drawable.launch_successful)
+            }else{
+                successIv.setBackgroundResource(R.drawable.launch_failed)
+            }
         }
+
 
     }
 

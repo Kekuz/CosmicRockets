@@ -3,12 +3,14 @@ package com.cosmicrockets.presentation.launches
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.cosmicrockets.domain.api.usecase.SearchLaunchByIdUseCase
+import javax.inject.Inject
 
 class LaunchFactory(
-    private val id: String,
-    private val searchLaunchByIdUseCase: SearchLaunchByIdUseCase,
+    private val rocketId: String,
+    private val searchLaunchByIdUseCase: SearchLaunchByIdUseCase
 ) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return LaunchViewModel(id, searchLaunchByIdUseCase) as T
+        return LaunchViewModel(rocketId, searchLaunchByIdUseCase) as T
     }
+
 }

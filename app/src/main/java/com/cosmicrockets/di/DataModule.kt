@@ -3,7 +3,9 @@ package com.cosmicrockets.di
 import android.content.Context
 import com.cosmicrockets.data.NetworkClient
 import com.cosmicrockets.data.network.RetrofitNetworkClient
+import com.cosmicrockets.data.repository.LaunchRepositoryImpl
 import com.cosmicrockets.data.repository.RocketRepositoryImpl
+import com.cosmicrockets.domain.api.repository.LaunchRepository
 import com.cosmicrockets.domain.api.repository.RocketRepository
 import dagger.Module
 import dagger.Provides
@@ -17,5 +19,10 @@ class DataModule {
     @Provides
     fun provideRocketRepository(networkClient: NetworkClient): RocketRepository {
         return RocketRepositoryImpl(networkClient)
+    }
+
+    @Provides
+    fun provideLaunchRepository(networkClient: NetworkClient): LaunchRepository {
+        return LaunchRepositoryImpl(networkClient)
     }
 }
