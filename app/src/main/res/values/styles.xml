@@ -35,7 +35,7 @@
         <item name="android:fontFamily">@font/lab_grotesque_regular</item>
         <item name="android:textSize">@dimen/normal_text_size</item>
         <item name="android:textColor">@color/title_gray</item>
-        <item name="android:ellipsize">start</item>
+        <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
     </style>
 

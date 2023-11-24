@@ -27,7 +27,7 @@ object RocketMapper {
             payloadWeightMapper(input.payloadWeights),
             input.firstFlight ?: EMPTY_STRING,
             input.country ?: EMPTY_STRING,
-            input.costPerLaunch ?: EMPTY_NUMBER_INT,
+            input.costPerLaunch,
             firstStageMapper(input.firstStage),
             secondStageMapper(input.secondStage),
         )
@@ -35,22 +35,22 @@ object RocketMapper {
 
     private fun heightMapper(input: HeightDto?): Height {
         return Height(
-            input?.meters ?: EMPTY_NUMBER_DOUBLE,
-            input?.feet ?: EMPTY_NUMBER_DOUBLE,
+            input?.meters,
+            input?.feet,
         )
     }
 
     private fun diameterMapper(input: DiameterDto?): Diameter {
         return Diameter(
-            input?.meters ?: EMPTY_NUMBER_DOUBLE,
-            input?.feet ?: EMPTY_NUMBER_DOUBLE,
+            input?.meters,
+            input?.feet,
         )
     }
 
     private fun massMapper(input: MassDto?): Mass {
         return Mass(
-            input?.kg ?: EMPTY_NUMBER_INT,
-            input?.lb ?: EMPTY_NUMBER_INT,
+            input?.kg,
+            input?.lb,
         )
     }
 
@@ -64,22 +64,20 @@ object RocketMapper {
 
     private fun firstStageMapper(input: FirstStageDto?): FirstStage {
         return FirstStage(
-            input?.engines ?: EMPTY_NUMBER_INT,
-            input?.fuelAmountTons ?: EMPTY_NUMBER_DOUBLE,
-            input?.burnTimeSec ?: EMPTY_NUMBER_INT,
+            input?.engines,
+            input?.fuelAmountTons,
+            input?.burnTimeSec,
         )
     }
 
     private fun secondStageMapper(input: SecondStageDto?): SecondStage {
         return SecondStage(
-            input?.engines ?: EMPTY_NUMBER_INT,
-            input?.fuelAmountTons ?: EMPTY_NUMBER_DOUBLE,
-            input?.burnTimeSec ?: EMPTY_NUMBER_INT,
+            input?.engines,
+            input?.fuelAmountTons,
+            input?.burnTimeSec,
         )
     }
 
     private const val LOW_EARTH_ORBIT = "leo"
     private const val EMPTY_STRING = "-"
-    private const val EMPTY_NUMBER_DOUBLE = -1.0
-    private const val EMPTY_NUMBER_INT = -1
 }

@@ -9,7 +9,7 @@ import java.util.Locale
 object LaunchMapper {
 
     private val dateFormat =
-        SimpleDateFormat("dd MMMM yyyy", Locale("ru"))
+        SimpleDateFormat("d MMMM, yyyy", Locale("ru"))
     fun map(input: LaunchDto): Launch {
         return Launch(
             input.rocket,

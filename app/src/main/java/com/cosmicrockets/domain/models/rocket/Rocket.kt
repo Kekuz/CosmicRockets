@@ -10,7 +10,7 @@ data class Rocket(
     val payloadWeight: PayloadWeight,
     val firstFlight: String,
     val country: String,
-    val costPerLaunch: Int,
+    val costPerLaunch: Int?,
     val firstStage: FirstStage,
     val secondStage: SecondStage,
 
