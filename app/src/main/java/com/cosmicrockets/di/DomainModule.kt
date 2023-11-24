@@ -1,5 +1,6 @@
 package com.cosmicrockets.di
 
+import android.util.Log
 import com.cosmicrockets.domain.api.repository.LaunchRepository
 import com.cosmicrockets.domain.api.repository.RocketRepository
 import com.cosmicrockets.domain.api.usecase.SearchLaunchByIdUseCase

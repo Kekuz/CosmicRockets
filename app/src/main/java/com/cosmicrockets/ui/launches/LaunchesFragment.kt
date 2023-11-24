@@ -13,12 +13,11 @@ import com.cosmicrockets.app.App
 import com.cosmicrockets.data.network.RetrofitNetworkClient
 import com.cosmicrockets.data.repository.LaunchRepositoryImpl
 import com.cosmicrockets.databinding.FragmentLaunchesBinding
-import com.cosmicrockets.domain.api.repository.LaunchRepository
+import com.cosmicrockets.domain.api.usecase.SearchLaunchByIdUseCase
 import com.cosmicrockets.domain.impl.SearchLaunchByIdUseCaseImpl
 import com.cosmicrockets.domain.models.launch.Launch
 import com.cosmicrockets.presentation.launches.LaunchFactory
 import com.cosmicrockets.presentation.launches.LaunchViewModel
-import com.cosmicrockets.presentation.rockets_viewpager.RocketsVPFactory
 import com.cosmicrockets.ui.state.LaunchesFragmentState
 import javax.inject.Inject
 
@@ -27,8 +26,9 @@ class LaunchesFragment : Fragment() {
     private lateinit var binding: FragmentLaunchesBinding
     private lateinit var viewModel: LaunchViewModel
 
-    //@Inject
-    //lateinit var searchLaunchByIdUseCase: SearchLaunchByIdUseCaseImpl
+
+    @Inject
+    lateinit var searchLaunchByIdUseCase: SearchLaunchByIdUseCase
 
     private lateinit var currentState: LaunchesFragmentState
 
@@ -47,13 +47,10 @@ class LaunchesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //(activity?.applicationContext as App).appComponent.inject(this)
+        (activity?.applicationContext as App).appComponent.inject(this)
         binding = FragmentLaunchesBinding.inflate(inflater, container, false)
 
         rocketId = requireArguments().getString("id")
-
-        var searchLaunchByIdUseCase =
-            SearchLaunchByIdUseCaseImpl(LaunchRepositoryImpl(RetrofitNetworkClient(requireContext())))
 
 
         viewModel = ViewModelProvider(
