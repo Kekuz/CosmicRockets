@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:text="FalconSat"
+        tools:text="FalconSat"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,15 +24,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="2 февраля, 2022"
+        tools:text="2 февраля, 2022"
         app:layout_constraintStart_toStartOf="@+id/launch_name_tv"
         app:layout_constraintTop_toBottomOf="@id/launch_name_tv" />
 
     <ImageView
+        android:id="@+id/success_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:src="@drawable/launch_successful"
+        tools:src="@drawable/launch_successful"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

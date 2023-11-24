@@ -57,7 +57,7 @@ class RocketsVPFragment : Fragment() {
         when (state) {
             is RocketsVPFragmentState.Loading -> showLoading()
             is RocketsVPFragmentState.Error -> showError(state.message)
-            is RocketsVPFragmentState.Content -> showProductDetails(state.data)
+            is RocketsVPFragmentState.Content -> showContent(state.data)
         }
     }
 
@@ -65,7 +65,7 @@ class RocketsVPFragment : Fragment() {
         binding.rocketLoadingPb.isVisible = true
     }
 
-    private fun showProductDetails(listRocketsVPFragment: List<RocketFragment>) {
+    private fun showContent(listRocketsVPFragment: List<RocketFragment>) {
         val viewPagerAdapter = ViewPagerAdapter(requireActivity(), listRocketsVPFragment)
         binding.viewPager.adapter = viewPagerAdapter
         TabLayoutMediator(
