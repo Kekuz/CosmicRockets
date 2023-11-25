@@ -13,7 +13,7 @@
     <TextView
         android:id="@+id/number_tv"
         android:layout_width="wrap_content"
-        android:text="220.6"
+        tools:text="220.6"
         style="@style/rv_num_text_style"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

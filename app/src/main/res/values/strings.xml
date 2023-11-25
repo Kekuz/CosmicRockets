@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Cosmic rockets</string>
+    <string name="meters">m</string>
+    <string name="feet">ft</string>
+    <string name="kilogram">kg</string>
+    <string name="pound">lb</string>
 
 </resources>

@@ -21,8 +21,6 @@ class LaunchViewModel(
     private val _state = MutableLiveData<LaunchesFragmentState>()
     val state: LiveData<LaunchesFragmentState> = _state
 
-    private var count = 1
-
     private var isFirstLoad = true
     var hasNextPage = true
     private var pageNumber = 1
@@ -61,77 +59,6 @@ class LaunchViewModel(
 
             })
 
-        /*CoroutineScope(Dispatchers.IO).launch {
-            delay(2000)
-            val content = LaunchesFragmentState.Content(getData())
-            _state.postValue(content)
-        }*/
-
-
     }
 
-    private fun getData(): List<Launch> {
-        return listOf(
-            Launch(
-                "",
-                count++.toString(),
-                "2 февраля, 2022",
-                true
-            ),
-            Launch(
-                "",
-                count++.toString(),
-                "6 января, 2022",
-                true
-            ),
-            Launch(
-                "",
-                count++.toString(),
-                "23 декабря, 2021",
-                false
-            ),
-            Launch(
-                "",
-                count++.toString(),
-                "2 февраля, 2022",
-                true
-            ),
-            Launch(
-                "",
-                count++.toString(),
-                "6 января, 2022",
-                true
-            ),
-            Launch(
-                "",
-                count++.toString(),
-                "23 декабря, 2021",
-                false
-            ),
-            Launch(
-                "",
-                count++.toString(),
-                "2 февраля, 2022",
-                true
-            ),
-            Launch(
-                "",
-                count++.toString(),
-                "6 января, 2022",
-                true
-            ),
-            Launch(
-                "",
-                count++.toString(),
-                "23 декабря, 2021",
-                false
-            ),
-            Launch(
-                "",
-                count++.toString(),
-                "2 февраля, 2022",
-                true
-            ),
-        )
-    }
 }

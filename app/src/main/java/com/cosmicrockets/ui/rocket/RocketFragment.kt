@@ -1,10 +1,15 @@
 package com.cosmicrockets.ui.rocket
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.cosmicrockets.R
@@ -22,10 +27,10 @@ class RocketFragment : Fragment() {
 
     //Надо бы сделать ViewModel...
     private val rocketData = mutableListOf(
-        RocketDataRV("-","Высота, -"),
-        RocketDataRV("-","Диаметр, -"),
-        RocketDataRV("-","Масса, -"),
-        RocketDataRV("-","Нагрузка, -"),
+        RocketDataRV("-", "Высота, -"),
+        RocketDataRV("-", "Диаметр, -"),
+        RocketDataRV("-", "Масса, -"),
+        RocketDataRV("-", "Нагрузка, -"),
     )
 
 
@@ -39,11 +44,11 @@ class RocketFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rocket  = requireArguments().getParcelable("rocket")
+        rocket = requireArguments().getParcelable("rocket")
         bindViews()
     }
 
-    private fun bindViews() = with(binding){
+    private fun bindViews() = with(binding) {
 
         nameTv.text = rocket?.name
         imageIv.load(rocket?.image) {
@@ -51,6 +56,11 @@ class RocketFragment : Fragment() {
             //placeholder(R.drawable.place_holder_icon)
             //error(R.drawable.place_holder_icon)
         }
+
+        settingsBtn.setOnClickListener {
+            showDialog()
+        }
+
         bindRecyclerView()
         binding.rocketInfoRv.adapter = RocketRecyclerAdapter(rocketData)
 
@@ -58,25 +68,47 @@ class RocketFragment : Fragment() {
         countryTv.text = rocket?.country
         costPerLaunchTv.text = rocket?.costPerLaunch
 
-        firstEnginesTv.text= rocket?.firstEngines
+        firstEnginesTv.text = rocket?.firstEngines
         firstFuelAmountTonsTv.text = rocket?.firstFuelAmountTons
         firstBurnTimeSecTv.text = rocket?.firstBurnTimeSec
 
-        secondEnginesTv.text= rocket?.secondEngines
+        secondEnginesTv.text = rocket?.secondEngines
         secondFuelAmountTonsTv.text = rocket?.secondFuelAmountTons
         secondBurnTimeSecTv.text = rocket?.secondBurnTimeSec
 
         launchesButton.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("name", rocket?.name)
-            bundle.putString("id",rocket?.id)
+            bundle.putString("id", rocket?.id)
 
             findNavController().navigate(R.id.action_rocketsVPFragment_to_launchesFragment, bundle)
         }
 
     }
 
-    private fun bindRecyclerView(){
+    private fun showDialog() {
+        Dialog(
+            requireContext(),
+        ).apply {
+            requestWindowFeature(
+                Window.FEATURE_NO_TITLE
+            )
+            setContentView(R.layout.dialog_settings)
+            window!!.attributes.windowAnimations=R.style.dialog_animation
+            window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+            window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            window!!.setGravity(Gravity.BOTTOM)
+            val cancelBtn = findViewById<View>(R.id.close_btn)
+
+            cancelBtn.setOnClickListener {
+                dismiss()
+            }
+
+            show()
+        }
+    }
+
+    private fun bindRecyclerView() {
         rocketData[0].num = rocket?.heightMeters!!
         rocketData[1].num = rocket?.diameterMeters!!
         rocketData[2].num = rocket?.massKg!!

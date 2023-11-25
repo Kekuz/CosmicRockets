@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="100dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/settings_background_shape"
+        app:layout_constraintBottom_toBottomOf="@+id/payload_weight_static_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/settings_title_tv"
+        style="@style/normal_info_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="Настройки"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/close_tv"
+        style="@style/rv_num_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="24dp"
+        android:text="Закрыть"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/close_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="-16dp"
+        android:layout_marginBottom="-16dp"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="@id/close_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/close_tv"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/height_static_tv"
+        style="@style/normal_info_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="96dp"
+        android:text="Высота"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/height_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="@string/meters"
+        android:textOn="@string/feet"
+        app:thumbTint="@color/white"
+        app:trackTint="@color/dark_gray"
+        android:thumb="@drawable/thumb"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintBottom_toBottomOf="@+id/height_static_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/height_static_tv"
+        app:showText="true"
+        app:track="@drawable/track" />
+
+    <TextView
+        android:id="@+id/diameter_static_tv"
+        style="@style/normal_info_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="40dp"
+        android:text="Диаметр"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/height_static_tv" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/diameter_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="@string/meters"
+        android:textOn="@string/feet"
+        app:thumbTint="@color/white"
+        app:trackTint="@color/dark_gray"
+        android:thumb="@drawable/thumb"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintBottom_toBottomOf="@id/diameter_static_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/diameter_static_tv"
+        app:showText="true"
+        app:track="@drawable/track" />
+
+    <TextView
+        android:id="@+id/mass_static_tv"
+        style="@style/normal_info_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="40dp"
+        android:text="Масса"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/diameter_static_tv" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/mass_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="@string/kilogram"
+        android:textOn="@string/pound"
+        app:thumbTint="@color/white"
+        app:trackTint="@color/dark_gray"
+        android:thumb="@drawable/thumb"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintBottom_toBottomOf="@id/mass_static_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/mass_static_tv"
+        app:showText="true"
+        app:track="@drawable/track" />
+
+    <TextView
+        android:id="@+id/payload_weight_static_tv"
+        style="@style/normal_info_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="40dp"
+        android:text="Масса"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mass_static_tv" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/payload_weight_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="@string/kilogram"
+        android:textOn="@string/pound"
+        app:thumbTint="@color/white"
+        app:trackTint="@color/dark_gray"
+        android:thumb="@drawable/thumb"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintBottom_toBottomOf="@id/payload_weight_static_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/payload_weight_static_tv"
+        app:showText="true"
+        app:track="@drawable/track" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
