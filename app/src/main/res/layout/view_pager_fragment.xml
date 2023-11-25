@@ -59,7 +59,7 @@
 
     <Button
         android:id="@+id/reload_btn"
-        style="@style/button_text_style"
+        style="@style/button_style"
         android:layout_width="wrap_content"
         android:paddingHorizontal="32dp"
         android:layout_height="72dp"

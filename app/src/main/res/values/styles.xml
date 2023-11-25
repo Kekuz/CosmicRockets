@@ -55,14 +55,14 @@
         <item name="android:maxLines">1</item>
     </style>
 
-    <style name="button_text_style">
-        <item name="android:backgroundTint">@color/dark_gray</item>
+    <style name="button_style" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:background">@drawable/rocket_button_background</item>
         <item name="android:ellipsize">end</item>
         <item name="android:fontFamily">@font/lab_grotesque_bold</item>
         <item name="android:textSize">@dimen/button_text_size</item>
         <item name="android:textColor">@color/title_gray</item>
         <item name="android:maxLines">1</item>
-        <item name="cornerRadius">12dp</item>
     </style>
 
     <style name="error_text_style">
