@@ -22,18 +22,17 @@
                 android:id="@+id/image_iv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
                 android:background="@color/light_black"
+                android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax" />
-
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
-                android:orientation="horizontal"
+                android:layout_gravity="bottom"
                 android:background="@drawable/toolbar_background_shape"
-                android:layout_gravity="bottom">
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/name_tv"
@@ -42,26 +41,25 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginBottom="16dp"
-                    android:text="Rocket Heavy"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/settings_btn"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="Rocket Heavy" />
 
                 <ImageView
-                    android:foreground="?attr/selectableItemBackground"
                     android:id="@+id/settings_btn"
-                    android:clickable="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     android:src="@drawable/setting_image"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
             <androidx.appcompat.widget.Toolbar
@@ -89,24 +87,24 @@
                 android:id="@+id/rocket_info_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="32dp"
-                android:clipToPadding = "false"
                 android:layout_marginTop="16dp"
+                android:clipToPadding="false"
                 android:orientation="horizontal"
+                android:paddingStart="32dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/rocket_info_view"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                tools:listitem="@layout/rocket_info_view" />
 
             <TextView
                 android:id="@+id/firstFlight_static_tv"
+                style="@style/normal_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Первый запуск"
-                android:layout_marginTop="40dp"
                 android:layout_marginStart="32dp"
-                style="@style/normal_text_style"
+                android:layout_marginTop="40dp"
+                android:text="@string/first_launch"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rocket_info_rv" />
 
@@ -114,21 +112,21 @@
                 android:id="@+id/firstFlight_tv"
                 style="@style/normal_info_text_style"
                 android:layout_width="0dp"
-                android:gravity="end"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                tools:text="7 февраля, 2018"
+                android:gravity="end"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/firstFlight_static_tv"
-                app:layout_constraintTop_toTopOf="@id/firstFlight_static_tv" />
+                app:layout_constraintTop_toTopOf="@id/firstFlight_static_tv"
+                tools:text="7 февраля, 2018" />
 
             <TextView
                 android:id="@+id/country_static_tv"
+                style="@style/normal_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Страна"
-                style="@style/normal_text_style"
+                android:text="@string/country"
                 app:layout_constraintStart_toStartOf="@id/firstFlight_static_tv"
                 app:layout_constraintTop_toBottomOf="@id/firstFlight_static_tv" />
 
@@ -138,19 +136,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                tools:text="США"
                 android:gravity="end"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/country_static_tv"
-                app:layout_constraintTop_toTopOf="@id/country_static_tv" />
+                app:layout_constraintTop_toTopOf="@id/country_static_tv"
+                tools:text="США" />
 
             <TextView
                 android:id="@+id/cost_per_launch_static_tv"
+                style="@style/normal_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Стоимость запуска"
-                style="@style/normal_text_style"
+                android:text="@string/cost_per_launch"
                 app:layout_constraintStart_toStartOf="@id/country_static_tv"
                 app:layout_constraintTop_toBottomOf="@id/country_static_tv" />
 
@@ -160,31 +158,31 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                tools:text="$90 млн"
                 android:gravity="end"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cost_per_launch_static_tv"
-                app:layout_constraintTop_toTopOf="@id/cost_per_launch_static_tv" />
+                app:layout_constraintTop_toTopOf="@id/cost_per_launch_static_tv"
+                tools:text="$90 млн" />
 
             <TextView
                 android:id="@+id/first_stage_title_tv"
                 style="@style/normal_title_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="40dp"
-                android:text="ПЕРВАЯ СТУПЕНЬ"
+                android:layout_marginEnd="32dp"
+                android:text="@string/first_stage"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cost_per_launch_static_tv" />
 
             <TextView
                 android:id="@+id/first_engines_static_tv"
+                style="@style/normal_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Количество двигателей"
-                style="@style/normal_text_style"
+                android:text="@string/engines_count"
                 app:layout_constraintStart_toStartOf="@id/first_stage_title_tv"
                 app:layout_constraintTop_toBottomOf="@id/first_stage_title_tv" />
 
@@ -193,19 +191,19 @@
                 style="@style/normal_title_text_style"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="27"
                 android:gravity="end"
                 app:layout_constraintEnd_toEndOf="@+id/first_fuel_amount_tons_tv"
                 app:layout_constraintStart_toEndOf="@+id/first_engines_static_tv"
-                app:layout_constraintTop_toTopOf="@id/first_engines_static_tv" />
+                app:layout_constraintTop_toTopOf="@id/first_engines_static_tv"
+                tools:text="27" />
 
             <TextView
                 android:id="@+id/first_fuel_amount_tons_static_tv"
+                style="@style/normal_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Количество топлива"
-                style="@style/normal_text_style"
+                android:text="@string/fuel_amount"
                 app:layout_constraintStart_toStartOf="@id/first_engines_static_tv"
                 app:layout_constraintTop_toBottomOf="@id/first_engines_static_tv" />
 
@@ -215,29 +213,29 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                tools:text="308,6"
                 android:gravity="end"
                 app:layout_constraintEnd_toStartOf="@+id/first_fuel_amount_tons_utils_tv"
                 app:layout_constraintStart_toEndOf="@+id/first_fuel_amount_tons_static_tv"
-                app:layout_constraintTop_toTopOf="@id/first_fuel_amount_tons_static_tv" />
+                app:layout_constraintTop_toTopOf="@id/first_fuel_amount_tons_static_tv"
+                tools:text="308,6" />
 
             <TextView
                 android:id="@+id/first_fuel_amount_tons_utils_tv"
+                style="@style/units_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                android:text="ton"
-                style="@style/units_text_style"
+                android:text="@string/ton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/first_fuel_amount_tons_static_tv" />
 
             <TextView
                 android:id="@+id/first_burn_time_sec_static_tv"
+                style="@style/normal_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Время сгорания"
-                style="@style/normal_text_style"
+                android:text="@string/burn_time"
                 app:layout_constraintStart_toStartOf="@id/first_fuel_amount_tons_static_tv"
                 app:layout_constraintTop_toBottomOf="@id/first_fuel_amount_tons_static_tv" />
 
@@ -247,11 +245,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                tools:text="593"
                 android:gravity="end"
                 app:layout_constraintEnd_toStartOf="@+id/first_burn_time_sec_utils_tv"
                 app:layout_constraintStart_toEndOf="@+id/first_burn_time_sec_static_tv"
-                app:layout_constraintTop_toTopOf="@+id/first_burn_time_sec_static_tv" />
+                app:layout_constraintTop_toTopOf="@+id/first_burn_time_sec_static_tv"
+                tools:text="593" />
 
             <TextView
                 android:id="@+id/first_burn_time_sec_utils_tv"
@@ -259,12 +257,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                android:text="sec"
+                android:text="@string/sec"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/first_burn_time_sec_static_tv" />
-
-
-
 
 
             <TextView
@@ -272,20 +267,20 @@
                 style="@style/normal_title_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="40dp"
-                android:text="ВТОРАЯ СТУПЕНЬ"
+                android:layout_marginEnd="32dp"
+                android:text="@string/second_stage"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/first_burn_time_sec_utils_tv" />
 
             <TextView
                 android:id="@+id/second_engines_static_tv"
+                style="@style/normal_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Количество двигателей"
-                style="@style/normal_text_style"
+                android:text="@string/engines_count"
                 app:layout_constraintStart_toStartOf="@id/second_stage_title_tv"
                 app:layout_constraintTop_toBottomOf="@id/second_stage_title_tv" />
 
@@ -295,18 +290,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                tools:text="1"
                 app:layout_constraintEnd_toEndOf="@+id/second_fuel_amount_tons_tv"
                 app:layout_constraintStart_toEndOf="@+id/second_engines_static_tv"
-                app:layout_constraintTop_toTopOf="@id/second_engines_static_tv" />
+                app:layout_constraintTop_toTopOf="@id/second_engines_static_tv"
+                tools:text="1" />
 
             <TextView
                 android:id="@+id/second_fuel_amount_tons_static_tv"
+                style="@style/normal_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Количество топлива"
-                style="@style/normal_text_style"
+                android:text="@string/fuel_amount"
                 app:layout_constraintStart_toStartOf="@id/second_engines_static_tv"
                 app:layout_constraintTop_toBottomOf="@id/second_engines_static_tv" />
 
@@ -315,30 +310,30 @@
                 style="@style/normal_title_text_style"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="end"
                 android:layout_marginEnd="8dp"
-                tools:text="243,2"
+                android:gravity="end"
                 app:layout_constraintEnd_toStartOf="@+id/second_fuel_amount_tons_utils_tv"
                 app:layout_constraintStart_toEndOf="@+id/second_fuel_amount_tons_static_tv"
-                app:layout_constraintTop_toTopOf="@id/second_fuel_amount_tons_static_tv" />
+                app:layout_constraintTop_toTopOf="@id/second_fuel_amount_tons_static_tv"
+                tools:text="243,2" />
 
             <TextView
                 android:id="@+id/second_fuel_amount_tons_utils_tv"
+                style="@style/units_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                android:text="ton"
-                style="@style/units_text_style"
+                android:text="@string/ton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/second_fuel_amount_tons_static_tv" />
 
             <TextView
                 android:id="@+id/second_burn_time_sec_static_tv"
+                style="@style/normal_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Время сгорания"
-                style="@style/normal_text_style"
+                android:text="@string/burn_time"
                 app:layout_constraintStart_toStartOf="@id/second_fuel_amount_tons_static_tv"
                 app:layout_constraintTop_toBottomOf="@id/second_fuel_amount_tons_static_tv" />
 
@@ -348,11 +343,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                tools:text="397"
                 android:gravity="end"
                 app:layout_constraintEnd_toStartOf="@+id/second_burn_time_sec_utils_tv"
                 app:layout_constraintStart_toEndOf="@+id/second_burn_time_sec_static_tv"
-                app:layout_constraintTop_toTopOf="@+id/second_burn_time_sec_static_tv" />
+                app:layout_constraintTop_toTopOf="@+id/second_burn_time_sec_static_tv"
+                tools:text="397" />
 
             <TextView
                 android:id="@+id/second_burn_time_sec_utils_tv"
@@ -360,19 +355,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                android:text="sec"
+                android:text="@string/sec"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/second_burn_time_sec_static_tv" />
 
 
             <Button
-                style="@style/button_style"
                 android:id="@+id/launchesButton"
+                style="@style/button_style"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
                 android:layout_marginHorizontal="32dp"
-                android:text="Посмотреть запуски"
                 android:layout_marginTop="32dp"
+                android:text="@string/watch_launches"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/second_burn_time_sec_static_tv" />

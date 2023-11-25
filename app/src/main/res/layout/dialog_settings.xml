@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:text="Настройки"
+        android:text="@string/settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:layout_marginEnd="24dp"
-        android:text="Закрыть"
+        android:text="@string/close"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,13 +49,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="96dp"
-        android:text="Высота"
+        android:text="@string/height"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/height_switch"
-        style="@style/switch_style"
+        style="@style/switch_style_m_ft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
@@ -72,13 +72,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="40dp"
-        android:text="Диаметр"
+        android:text="@string/diameter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/height_static_tv" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/diameter_switch"
-        style="@style/switch_style"
+        style="@style/switch_style_m_ft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
@@ -95,13 +95,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="40dp"
-        android:text="Масса"
+        android:text="@string/mass"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/diameter_static_tv" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/mass_switch"
-        style="@style/switch_style"
+        style="@style/switch_style_kg_lb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
@@ -118,13 +118,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="40dp"
-        android:text="Масса"
+        android:text="@string/payload"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mass_static_tv" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/payload_weight_switch"
-        style="@style/switch_style"
+        style="@style/switch_style_kg_lb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"

@@ -63,7 +63,7 @@
         android:layout_width="wrap_content"
         android:paddingHorizontal="32dp"
         android:layout_height="72dp"
-        android:text="Обновить"
+        android:text="@string/update"
         android:visibility="gone"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"

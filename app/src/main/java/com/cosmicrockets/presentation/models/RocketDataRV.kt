@@ -1,6 +1,7 @@
 package com.cosmicrockets.presentation.models
 
 data class RocketDataRV(
-    var num: String,
-    var info: String,
+    val num: String,
+    val info: String,
+    val infoUtil:String,
 )

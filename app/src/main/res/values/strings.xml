@@ -4,5 +4,24 @@
     <string name="feet">ft</string>
     <string name="kilogram">kg</string>
     <string name="pound">lb</string>
+    <string name="height">Высота</string>
+    <string name="close">Закрыть</string>
+    <string name="settings">Настройки</string>
+    <string name="diameter">Диаметр</string>
+    <string name="mass">Масса</string>
+    <string name="payload">Нагрузка</string>
+    <string name="back">Назад</string>
+    <string name="first_launch">Первый запуск</string>
+    <string name="country">Страна</string>
+    <string name="cost_per_launch">Стоимость запуска</string>
+    <string name="first_stage">ПЕРВАЯ СТУПЕНЬ</string>
+    <string name="engines_count">Количество двигателей</string>
+    <string name="fuel_amount">Количество топлива</string>
+    <string name="ton">ton</string>
+    <string name="burn_time">Время сгорания</string>
+    <string name="sec">sec</string>
+    <string name="second_stage">ВТОРАЯ СТУПЕНЬ</string>
+    <string name="watch_launches">Посмотреть запуски</string>
+    <string name="update">Обновить</string>
 
 </resources>

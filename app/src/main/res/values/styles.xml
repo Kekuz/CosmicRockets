@@ -88,12 +88,15 @@
         <item name="android:maxLines">1</item>
     </style>
 
-    <style name="switch_style">
+    <style name="switch_style_kg_lb" parent="switch_style_m_ft">
+        <item name="track">@drawable/settings_switch_track_kg_lb</item>
+    </style>
+
+    <style name="switch_style_m_ft">
         <item name="switchTextAppearance">@style/switch_text_style</item>
         <item name="showText">true</item>
-        <item name="track">@drawable/settings_switch_track</item>
+        <item name="track">@drawable/settings_switch_track_m_ft</item>
         <item name="android:thumb">@drawable/settings_switch_thumb</item>
-
     </style>
 
     <style name="switch_text_style">
