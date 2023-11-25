@@ -88,4 +88,19 @@
         <item name="android:maxLines">1</item>
     </style>
 
+    <style name="switch_style">
+        <item name="switchTextAppearance">@style/switch_text_style</item>
+        <item name="showText">true</item>
+        <item name="track">@drawable/settings_switch_track</item>
+        <item name="android:thumb">@drawable/settings_switch_thumb</item>
+
+    </style>
+
+    <style name="switch_text_style">
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/light_black</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
 </resources>

@@ -62,19 +62,15 @@
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/height_switch"
+        style="@style/switch_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
         android:textOff="@string/meters"
         android:textOn="@string/feet"
-        app:thumbTint="@color/white"
-        app:trackTint="@color/dark_gray"
-        android:thumb="@drawable/thumb"
-        android:layout_marginEnd="28dp"
         app:layout_constraintBottom_toBottomOf="@+id/height_static_tv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/height_static_tv"
-        app:showText="true"
-        app:track="@drawable/track" />
+        app:layout_constraintTop_toTopOf="@+id/height_static_tv" />
 
     <TextView
         android:id="@+id/diameter_static_tv"
@@ -89,19 +85,15 @@
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/diameter_switch"
+        style="@style/switch_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
         android:textOff="@string/meters"
         android:textOn="@string/feet"
-        app:thumbTint="@color/white"
-        app:trackTint="@color/dark_gray"
-        android:thumb="@drawable/thumb"
-        android:layout_marginEnd="28dp"
         app:layout_constraintBottom_toBottomOf="@id/diameter_static_tv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/diameter_static_tv"
-        app:showText="true"
-        app:track="@drawable/track" />
+        app:layout_constraintTop_toTopOf="@id/diameter_static_tv" />
 
     <TextView
         android:id="@+id/mass_static_tv"
@@ -116,19 +108,15 @@
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/mass_switch"
+        style="@style/switch_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
         android:textOff="@string/kilogram"
         android:textOn="@string/pound"
-        app:thumbTint="@color/white"
-        app:trackTint="@color/dark_gray"
-        android:thumb="@drawable/thumb"
-        android:layout_marginEnd="28dp"
         app:layout_constraintBottom_toBottomOf="@id/mass_static_tv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/mass_static_tv"
-        app:showText="true"
-        app:track="@drawable/track" />
+        app:layout_constraintTop_toTopOf="@id/mass_static_tv" />
 
     <TextView
         android:id="@+id/payload_weight_static_tv"
@@ -143,19 +131,15 @@
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/payload_weight_switch"
+        style="@style/switch_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
         android:textOff="@string/kilogram"
         android:textOn="@string/pound"
-        app:thumbTint="@color/white"
-        app:trackTint="@color/dark_gray"
-        android:thumb="@drawable/thumb"
-        android:layout_marginEnd="28dp"
         app:layout_constraintBottom_toBottomOf="@id/payload_weight_static_tv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/payload_weight_static_tv"
-        app:showText="true"
-        app:track="@drawable/track" />
+        app:layout_constraintTop_toTopOf="@id/payload_weight_static_tv" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
