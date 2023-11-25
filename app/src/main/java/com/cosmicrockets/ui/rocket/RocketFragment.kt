@@ -19,6 +19,7 @@ import com.cosmicrockets.domain.models.rocket.Rocket
 import com.cosmicrockets.presentation.models.RocketDataRV
 import com.cosmicrockets.presentation.models.RocketInfo
 import com.cosmicrockets.ui.launches.LaunchesFragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
 class RocketFragment : Fragment() {
@@ -87,23 +88,16 @@ class RocketFragment : Fragment() {
     }
 
     private fun showDialog() {
-        Dialog(
+        BottomSheetDialog(
             requireContext(),
+            R.style.BottomSheetDialogTheme
         ).apply {
-            requestWindowFeature(
-                Window.FEATURE_NO_TITLE
-            )
             setContentView(R.layout.dialog_settings)
-            window!!.attributes.windowAnimations=R.style.dialog_animation
-            window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-            window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            window!!.setGravity(Gravity.BOTTOM)
             val cancelBtn = findViewById<View>(R.id.close_btn)
 
-            cancelBtn.setOnClickListener {
+            cancelBtn?.setOnClickListener {
                 dismiss()
             }
-
             show()
         }
     }

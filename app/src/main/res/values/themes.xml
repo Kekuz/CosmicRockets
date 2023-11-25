@@ -6,9 +6,15 @@
     </style>
 
     <style name="Theme.CosmicRockets" parent="Base.Theme.CosmicRockets" />
-    
-    <style name="dialog_animation">
-        <item name="android:windowEnterAnimation">@anim/from_bottom</item>
-        <item name="android:windowExitAnimation">@anim/to_bottom</item>
+
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
     </style>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+
 </resources>
