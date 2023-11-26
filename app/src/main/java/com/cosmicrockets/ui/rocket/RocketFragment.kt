@@ -9,13 +9,22 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.cosmicrockets.R
+import com.cosmicrockets.app.App
+import com.cosmicrockets.data.repository.SettingsRepositoryImpl
+import com.cosmicrockets.data.storage.SharedPrefsSettingsStorage
 import com.cosmicrockets.databinding.DialogSettingsBinding
 import com.cosmicrockets.databinding.FragmentRocketBinding
+import com.cosmicrockets.domain.api.interactor.SettingsSavingInteractor
+import com.cosmicrockets.domain.api.repository.SettingsRepository
+import com.cosmicrockets.domain.api.usecase.SearchLaunchByIdUseCase
+import com.cosmicrockets.domain.impl.interactor.SettingsSavingInteractorImpl
+import com.cosmicrockets.presentation.mapper.SettingsFromRocketDataMapper
 import com.cosmicrockets.presentation.models.RocketDataRV
 import com.cosmicrockets.presentation.models.RocketInfo
 import com.cosmicrockets.presentation.rocket.SharedRocketViewModel
 import com.cosmicrockets.ui.state.RocketRecyclerState
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import javax.inject.Inject
 
 
 class RocketFragment : Fragment() {
@@ -24,6 +33,8 @@ class RocketFragment : Fragment() {
 
     private val sharedViewModel: SharedRocketViewModel by activityViewModels()
 
+    @Inject
+    lateinit var settingsSavingInteractor: SettingsSavingInteractor
 
     private var rocketData = mutableListOf<RocketDataRV>()
 
@@ -34,6 +45,7 @@ class RocketFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity?.applicationContext as App).appComponent.inject(this)
         binding = FragmentRocketBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -65,7 +77,6 @@ class RocketFragment : Fragment() {
             showDialog()
         }
 
-        //bindRecyclerView()
         binding.rocketInfoRv.adapter = rocketAdapter
 
         firstFlightTv.text = rocket?.firstFlight
@@ -98,42 +109,72 @@ class RocketFragment : Fragment() {
             val dialogBinding = DialogSettingsBinding.inflate(LayoutInflater.from(requireContext()))
             setContentView(dialogBinding.root)
 
-            //тут из шаредпрефс достаем значения и выставляем ползунки
+            val settings = settingsSavingInteractor.getSettings()
 
-            dialogBinding.closeBtn.setOnClickListener {
-                dismiss()
+            with(dialogBinding){
+
+                heightSwitch.isChecked = settings.height
+                diameterSwitch.isChecked = settings.diameter
+                massSwitch.isChecked = settings.mass
+                payloadWeightSwitch.isChecked = settings.payloadWeight
+
+
+                closeBtn.setOnClickListener {
+                    dismiss()
+                }
+
+                heightSwitch.setOnCheckedChangeListener { _, checked ->
+                    sharedViewModel.setState(RocketRecyclerState.Height(checked))
+                    settingsSavingInteractor.saveSettings(SettingsFromRocketDataMapper.map(rocketData))
+                }
+
+                diameterSwitch.setOnCheckedChangeListener { _, checked ->
+                    sharedViewModel.setState(RocketRecyclerState.Diameter(checked))
+                    settingsSavingInteractor.saveSettings(SettingsFromRocketDataMapper.map(rocketData))
+                }
+
+                massSwitch.setOnCheckedChangeListener { _, checked ->
+                    sharedViewModel.setState(RocketRecyclerState.Mass(checked))
+                    settingsSavingInteractor.saveSettings(SettingsFromRocketDataMapper.map(rocketData))
+                }
+
+                payloadWeightSwitch.setOnCheckedChangeListener { _, checked ->
+                    sharedViewModel.setState(RocketRecyclerState.PayloadWeight(checked))
+                    settingsSavingInteractor.saveSettings(SettingsFromRocketDataMapper.map(rocketData))
+                }
             }
 
-            dialogBinding.heightSwitch.setOnCheckedChangeListener { switcher, checked ->
-                sharedViewModel.setState(RocketRecyclerState.Height(checked))
-                //Тут юзкейс чтобы менять состояние в шаред префс
-            }
 
-            dialogBinding.diameterSwitch.setOnCheckedChangeListener { switcher, checked ->
-                sharedViewModel.setState(RocketRecyclerState.Diameter(checked))
-            }
-
-            dialogBinding.massSwitch.setOnCheckedChangeListener { switcher, checked ->
-                sharedViewModel.setState(RocketRecyclerState.Mass(checked))
-            }
-
-            dialogBinding.payloadWeightSwitch.setOnCheckedChangeListener { switcher, checked ->
-                sharedViewModel.setState(RocketRecyclerState.PayloadWeight(checked))
-            }
 
             show()
         }
     }
 
-    //Тут в зависимости от sharedPrefs нужно будет указывать единицы и значения
-    //Пока тут по дефолту m и kg
     private fun bindBySharedPrefs(): List<RocketDataRV> {
-        return listOf(
-            RocketDataRV(rocket?.heightMeters!!, "Высота, ", METER),
-            RocketDataRV(rocket?.diameterMeters!!, "Диаметр, ", METER),
-            RocketDataRV(rocket?.massKg!!, "Масса, ", KILOGRAM),
-            RocketDataRV(rocket?.payloadWeightKg!!, "Нагрузка, ", KILOGRAM),
-        )
+        val settings = settingsSavingInteractor.getSettings()
+        val result = mutableListOf<RocketDataRV>()
+
+        if (settings.height) {
+            result.add(RocketDataRV(rocket?.heightFeet!!, "Высота, ", FEET))
+        } else {
+            result.add(RocketDataRV(rocket?.heightMeters!!, "Высота, ", METER))
+        }
+        if (settings.diameter) {
+            result.add(RocketDataRV(rocket?.diameterFeet!!, "Диаметр, ", FEET))
+        } else {
+            result.add(RocketDataRV(rocket?.diameterMeters!!, "Диаметр, ", METER))
+        }
+        if (settings.mass) {
+            result.add(RocketDataRV(rocket?.massLb!!, "Масса, ", LIBRA))
+        } else {
+            result.add(RocketDataRV(rocket?.massKg!!, "Масса, ", KILOGRAM))
+        }
+        if (settings.payloadWeight) {
+            result.add(RocketDataRV(rocket?.payloadWeightLb!!, "Нагрузка, ", LIBRA))
+        } else {
+            result.add(RocketDataRV(rocket?.payloadWeightKg!!, "Нагрузка, ", KILOGRAM))
+        }
+        return result
     }
 
     private fun render(state: RocketRecyclerState) {
@@ -153,6 +194,7 @@ class RocketFragment : Fragment() {
             rocketData.add(0, RocketDataRV(rocket?.heightMeters!!, "Высота, ", METER))
         }
     }
+
     private fun bindDiameter(boolean: Boolean) {
         rocketData.removeAt(1)
         if (boolean) {
@@ -161,6 +203,7 @@ class RocketFragment : Fragment() {
             rocketData.add(1, RocketDataRV(rocket?.diameterMeters!!, "Диаметр, ", METER))
         }
     }
+
     private fun bindMass(boolean: Boolean) {
         rocketData.removeAt(2)
         if (boolean) {
@@ -169,6 +212,7 @@ class RocketFragment : Fragment() {
             rocketData.add(2, RocketDataRV(rocket?.massKg!!, "Масса, ", KILOGRAM))
         }
     }
+
     private fun bindPayloadWeight(boolean: Boolean) {
         rocketData.removeAt(3)
         if (boolean) {

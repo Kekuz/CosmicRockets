@@ -1,12 +1,14 @@
 package com.cosmicrockets.di
 
-import android.util.Log
+import com.cosmicrockets.domain.api.interactor.SettingsSavingInteractor
 import com.cosmicrockets.domain.api.repository.LaunchRepository
 import com.cosmicrockets.domain.api.repository.RocketRepository
+import com.cosmicrockets.domain.api.repository.SettingsRepository
 import com.cosmicrockets.domain.api.usecase.SearchLaunchByIdUseCase
 import com.cosmicrockets.domain.api.usecase.SearchRocketsUseCase
-import com.cosmicrockets.domain.impl.SearchLaunchByIdUseCaseImpl
-import com.cosmicrockets.domain.impl.SearchRocketsUseCaseImpl
+import com.cosmicrockets.domain.impl.interactor.SettingsSavingInteractorImpl
+import com.cosmicrockets.domain.impl.usecase.SearchLaunchByIdUseCaseImpl
+import com.cosmicrockets.domain.impl.usecase.SearchRocketsUseCaseImpl
 import dagger.Module
 import dagger.Provides
 
@@ -20,5 +22,10 @@ class DomainModule {
     @Provides
     fun provideSearchLaunchByIdUseCase(launchRepository: LaunchRepository): SearchLaunchByIdUseCase{
         return SearchLaunchByIdUseCaseImpl(launchRepository)
+    }
+
+    @Provides
+    fun provideSettingsSavingInteractor(settingsRepository: SettingsRepository): SettingsSavingInteractor {
+        return SettingsSavingInteractorImpl(settingsRepository)
     }
 }

@@ -10,11 +10,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.cosmicrockets.app.App
-import com.cosmicrockets.data.network.RetrofitNetworkClient
-import com.cosmicrockets.data.repository.LaunchRepositoryImpl
 import com.cosmicrockets.databinding.FragmentLaunchesBinding
 import com.cosmicrockets.domain.api.usecase.SearchLaunchByIdUseCase
-import com.cosmicrockets.domain.impl.SearchLaunchByIdUseCaseImpl
 import com.cosmicrockets.domain.models.launch.Launch
 import com.cosmicrockets.presentation.launches.LaunchFactory
 import com.cosmicrockets.presentation.launches.LaunchViewModel

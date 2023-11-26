@@ -1,4 +1,4 @@
-package com.cosmicrockets.domain.impl
+package com.cosmicrockets.domain.impl.usecase
 
 import com.cosmicrockets.domain.api.repository.RocketRepository
 import com.cosmicrockets.domain.api.usecase.SearchRocketsUseCase
