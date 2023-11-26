@@ -18,7 +18,7 @@ class RocketRepositoryImpl(private val networkClient: NetworkClient) : RocketRep
             }
 
             200 -> {
-                Log.e("Response",(response as RocketSearchResponse).docs.toString() )
+                Log.d("Response",(response as RocketSearchResponse).docs.toString() )
                 return Resource.Success((response as RocketSearchResponse).docs.map {
                     RocketMapper.map(it)
                 })

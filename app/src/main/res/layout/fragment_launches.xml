@@ -52,6 +52,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/back_iv" />
 
+    <ProgressBar
+        android:id="@+id/launches_error_pb"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="16dp"
+        android:indeterminateTint="@color/dark_gray"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/rocket_name_tv"
+        app:layout_constraintStart_toEndOf="@+id/rocket_name_tv"
+        app:layout_constraintTop_toTopOf="@+id/rocket_name_tv" />
+
+    <TextView
+        android:id="@+id/launches_empty_tv"
+        style="@style/error_text_style"
+        android:text="@string/no_launches_yet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:visibility="gone"
+        android:paddingHorizontal="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/launches_loading_bottom_pb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Ошибка" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/launch_rv"
         android:layout_width="match_parent"

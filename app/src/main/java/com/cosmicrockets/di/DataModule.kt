@@ -1,13 +1,17 @@
 package com.cosmicrockets.di
 
 import android.content.Context
+import com.cosmicrockets.data.DatabaseClient
 import com.cosmicrockets.data.NetworkClient
 import com.cosmicrockets.data.SettingsStorage
+import com.cosmicrockets.data.db.RoomDatabaseClient
 import com.cosmicrockets.data.network.RetrofitNetworkClient
+import com.cosmicrockets.data.repository.DatabaseRepositoryImpl
 import com.cosmicrockets.data.repository.LaunchRepositoryImpl
 import com.cosmicrockets.data.repository.RocketRepositoryImpl
 import com.cosmicrockets.data.repository.SettingsRepositoryImpl
 import com.cosmicrockets.data.storage.SharedPrefsSettingsStorage
+import com.cosmicrockets.domain.api.repository.DatabaseRepository
 import com.cosmicrockets.domain.api.repository.LaunchRepository
 import com.cosmicrockets.domain.api.repository.RocketRepository
 import com.cosmicrockets.domain.api.repository.SettingsRepository
@@ -27,6 +31,11 @@ class DataModule {
     }
 
     @Provides
+    fun provideDatabaseClient(context: Context): DatabaseClient {
+        return RoomDatabaseClient(context)
+    }
+
+    @Provides
     fun provideRocketRepository(networkClient: NetworkClient): RocketRepository {
         return RocketRepositoryImpl(networkClient)
     }
@@ -39,5 +48,10 @@ class DataModule {
     @Provides
     fun provideSettingsRepository(settingsStorage: SettingsStorage): SettingsRepository {
         return SettingsRepositoryImpl(settingsStorage)
+    }
+
+    @Provides
+    fun provideDatabaseRepository(databaseClient: DatabaseClient): DatabaseRepository {
+        return DatabaseRepositoryImpl(databaseClient)
     }
 }

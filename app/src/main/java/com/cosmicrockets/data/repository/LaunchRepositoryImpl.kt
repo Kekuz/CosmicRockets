@@ -22,7 +22,7 @@ class LaunchRepositoryImpl(private val networkClient: NetworkClient) : LaunchRep
                     )
             )
         )
-        Log.e("response", response.toString())
+        Log.d("response", response.toString())
         return when (response.resultCode) {
             -1 -> {
                 Resource.Error("Проверьте соединение с интернетом")

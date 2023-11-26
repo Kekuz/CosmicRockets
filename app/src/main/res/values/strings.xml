@@ -23,5 +23,6 @@
     <string name="second_stage">ВТОРАЯ СТУПЕНЬ</string>
     <string name="watch_launches">Посмотреть запуски</string>
     <string name="update">Обновить</string>
+    <string name="no_launches_yet">Запусков еще не совершалось :(</string>
 
 </resources>

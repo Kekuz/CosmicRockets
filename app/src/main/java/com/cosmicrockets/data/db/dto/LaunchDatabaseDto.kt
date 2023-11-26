@@ -1,9 +1,10 @@
-package com.cosmicrockets.domain.models.launch
+package com.cosmicrockets.data.db.dto
 
-data class Launch(
+
+data class LaunchDatabaseDto(
     val id: String,
     val rocketId: String,
-    var name: String,
+    val name: String,
     val date: String,
     val success: Boolean?,
 )

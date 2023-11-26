@@ -1,6 +1,7 @@
 package com.cosmicrockets.ui.launches
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.cosmicrockets.app.App
 import com.cosmicrockets.databinding.FragmentLaunchesBinding
+import com.cosmicrockets.domain.api.interactor.DatabaseInteractor
 import com.cosmicrockets.domain.api.usecase.SearchLaunchByIdUseCase
 import com.cosmicrockets.domain.models.launch.Launch
 import com.cosmicrockets.presentation.launches.LaunchFactory
@@ -27,11 +29,14 @@ class LaunchesFragment : Fragment() {
     @Inject
     lateinit var searchLaunchByIdUseCase: SearchLaunchByIdUseCase
 
+    @Inject
+    lateinit var databaseInteractor: DatabaseInteractor
+
     private lateinit var currentState: LaunchesFragmentState
 
     private val onEndingList: () -> Unit =
         {
-            if ((currentState !is LaunchesFragmentState.Loading || currentState !is LaunchesFragmentState.LoadingBottom) && viewModel.hasNextPage) {
+            if (currentState is LaunchesFragmentState.Content && viewModel.hasNextPage) {
                 viewModel.request()
             }
         }
@@ -52,7 +57,7 @@ class LaunchesFragment : Fragment() {
 
         viewModel = ViewModelProvider(
             this,
-            LaunchFactory(rocketId!!, searchLaunchByIdUseCase)
+            LaunchFactory(rocketId!!, searchLaunchByIdUseCase, databaseInteractor)
         )[LaunchViewModel::class.java]
 
         return binding.root
@@ -70,6 +75,7 @@ class LaunchesFragment : Fragment() {
         }
         viewModel.state.observe(activity as LifecycleOwner) {
             currentState = it
+            Log.e("state", it.toString())
             render(it)
         }
 
@@ -80,7 +86,7 @@ class LaunchesFragment : Fragment() {
         when (state) {
             is LaunchesFragmentState.Loading -> showLoading()
             is LaunchesFragmentState.LoadingBottom -> showLoadingBottom()
-            is LaunchesFragmentState.Error -> showError(state.message)
+            is LaunchesFragmentState.Error -> showError(state.data, state.message)
             is LaunchesFragmentState.Content -> showLaunches(state.data)
         }
     }
@@ -100,12 +106,16 @@ class LaunchesFragment : Fragment() {
         binding.reloadBtn.isVisible = false*/
         binding.launchesLoadingPb.isVisible = false
         binding.launchesLoadingBottomPb.isVisible = false
+        binding.launchesErrorPb.isVisible = false
+        binding.launchesEmptyTv.isVisible = listLaunches.isEmpty()
     }
 
-    private fun showError(message: String) {
-        /*binding.rocketLoadingPb.isVisible = false
-        binding.errorTv.isVisible = true
-        binding.reloadBtn.isVisible = true
-        binding.errorTv.text = message*/
+    private fun showError(listLaunches: List<Launch>, message: String) {
+        launches.addAll(listLaunches)
+        launchAdapter.notifyItemRangeChanged(launches.size, listLaunches.size)
+        binding.launchesLoadingPb.isVisible = false
+        binding.launchesLoadingBottomPb.isVisible = false
+        binding.launchesErrorPb.isVisible = true
+
     }
 }

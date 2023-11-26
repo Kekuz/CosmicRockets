@@ -1,9 +1,7 @@
 package com.cosmicrockets.presentation.mapper
 
-import android.util.Log
 import com.cosmicrockets.domain.models.rocket.Rocket
 import com.cosmicrockets.presentation.models.RocketInfo
-import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -16,31 +14,28 @@ object RocketInfoMapper {
         SimpleDateFormat("d MMMM, yyyy", Locale("ru"))
 
     fun map(rocket: Rocket): RocketInfo {
-        val rocketInfo =
-            RocketInfo(
-                rocket.id,
-                rocket.name,
-                rocket.image,
-                checkNull(rocket.height.meters),
-                checkNull(rocket.height.feet),
-                checkNull(rocket.diameter.meters),
-                checkNull(rocket.diameter.feet),
-                convertToCommaFormat(rocket.mass.kg),
-                convertToCommaFormat(rocket.mass.lb),
-                convertToCommaFormat(rocket.payloadWeight.kg),
-                convertToCommaFormat(rocket.payloadWeight.lb),
-                toDate(rocket.firstFlight)?.let { dateFormat.format(it) } ?: EMPTY_FIELD,
-                rocket.country,
-                convertMoneySum(rocket.costPerLaunch),
-                checkNull(rocket.firstStage.engines),
-                checkNull(rocket.firstStage.fuelAmountTons).replace('.', ','),
-                checkNull(rocket.firstStage.burnTimeSec),
-                checkNull(rocket.secondStage.engines),
-                checkNull(rocket.secondStage.fuelAmountTons).replace('.', ','),
-                checkNull(rocket.secondStage.burnTimeSec),
-            )
-        Log.e("RocketInfo", rocketInfo.toString())
-        return rocketInfo
+        return RocketInfo(
+            rocket.id,
+            rocket.name,
+            rocket.image,
+            checkNull(rocket.height.meters),
+            checkNull(rocket.height.feet),
+            checkNull(rocket.diameter.meters),
+            checkNull(rocket.diameter.feet),
+            convertToCommaFormat(rocket.mass.kg),
+            convertToCommaFormat(rocket.mass.lb),
+            convertToCommaFormat(rocket.payloadWeight.kg),
+            convertToCommaFormat(rocket.payloadWeight.lb),
+            toDate(rocket.firstFlight)?.let { dateFormat.format(it) } ?: EMPTY_FIELD,
+            rocket.country,
+            convertMoneySum(rocket.costPerLaunch),
+            checkNull(rocket.firstStage.engines),
+            checkNull(rocket.firstStage.fuelAmountTons).replace('.', ','),
+            checkNull(rocket.firstStage.burnTimeSec),
+            checkNull(rocket.secondStage.engines),
+            checkNull(rocket.secondStage.fuelAmountTons).replace('.', ','),
+            checkNull(rocket.secondStage.burnTimeSec),
+        )
     }
 
     private fun checkNull(num: Number?): String =
