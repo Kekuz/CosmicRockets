@@ -1,27 +1,22 @@
 package com.cosmicrockets.ui.rocket
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import coil.load
 import com.cosmicrockets.R
 import com.cosmicrockets.app.App
-import com.cosmicrockets.data.repository.SettingsRepositoryImpl
-import com.cosmicrockets.data.storage.SharedPrefsSettingsStorage
 import com.cosmicrockets.databinding.DialogSettingsBinding
 import com.cosmicrockets.databinding.FragmentRocketBinding
 import com.cosmicrockets.domain.api.interactor.SettingsSavingInteractor
-import com.cosmicrockets.domain.api.repository.SettingsRepository
-import com.cosmicrockets.domain.api.usecase.SearchLaunchByIdUseCase
-import com.cosmicrockets.domain.impl.interactor.SettingsSavingInteractorImpl
 import com.cosmicrockets.presentation.mapper.SettingsFromRocketDataMapper
 import com.cosmicrockets.presentation.models.RocketDataRV
 import com.cosmicrockets.presentation.models.RocketInfo
 import com.cosmicrockets.presentation.rocket.SharedRocketViewModel
+import com.cosmicrockets.ui.launches.LaunchesFragment
 import com.cosmicrockets.ui.state.RocketRecyclerState
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import javax.inject.Inject
@@ -96,7 +91,13 @@ class RocketFragment : Fragment() {
             bundle.putString("name", rocket?.name)
             bundle.putString("id", rocket?.id)
 
-            findNavController().navigate(R.id.action_rocketsVPFragment_to_launchesFragment, bundle)
+            val launchesFragment = LaunchesFragment()
+            launchesFragment.arguments = bundle
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragmentContainerView, launchesFragment, "rockets_fragment")
+                ?.addToBackStack(null)
+                ?.commit()
+
         }
 
     }

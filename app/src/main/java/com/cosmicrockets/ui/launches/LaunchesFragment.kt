@@ -1,17 +1,13 @@
 package com.cosmicrockets.ui.launches
 
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.cosmicrockets.R
 import com.cosmicrockets.app.App
 import com.cosmicrockets.databinding.FragmentLaunchesBinding
@@ -74,7 +70,8 @@ class LaunchesFragment : Fragment() {
         binding.launchRv.adapter = launchAdapter
 
         binding.backBtn.setOnClickListener {
-            findNavController().popBackStack()
+
+            activity?.supportFragmentManager?.popBackStack()
         }
         viewModel.state.observe(activity as LifecycleOwner) {
             currentState = it

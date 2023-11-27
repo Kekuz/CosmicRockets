@@ -14,7 +14,6 @@ import android.view.View
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.Navigation.findNavController
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.cosmicrockets.R

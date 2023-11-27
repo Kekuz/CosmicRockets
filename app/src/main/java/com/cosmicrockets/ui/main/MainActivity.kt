@@ -3,14 +3,16 @@ package com.cosmicrockets.ui.main
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
+import com.cosmicrockets.R
 import com.cosmicrockets.databinding.ActivityMainBinding
 import com.cosmicrockets.presentation.main.NotificationWorker
+import com.cosmicrockets.ui.viewpager.RocketsVPFragment
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +23,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         notificationPermission()
+
+        val fragment = RocketsVPFragment()
+
+        this.supportFragmentManager.beginTransaction()
+            .add(R.id.fragmentContainerView, fragment)
+            .addToBackStack(null)
+            .commit()
 
         val workRequestForTime =
             PeriodicWorkRequestBuilder<NotificationWorker>(30, TimeUnit.MINUTES, 25, TimeUnit.MINUTES)
