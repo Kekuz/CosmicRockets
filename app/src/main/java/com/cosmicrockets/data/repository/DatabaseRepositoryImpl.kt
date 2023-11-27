@@ -11,6 +11,10 @@ class DatabaseRepositoryImpl(private val databaseClient: DatabaseClient): Databa
     }
 
     override fun getLaunches(rocketId: String): List<Launch> {
-        return databaseClient.get(rocketId).map { LaunchMapper.map(it) }
+        return databaseClient.getByRocketId(rocketId).map { LaunchMapper.map(it) }
+    }
+
+    override fun getLaunchById(id: String): Launch? {
+        return  LaunchMapper.mapForId(databaseClient.getById(id))
     }
 }

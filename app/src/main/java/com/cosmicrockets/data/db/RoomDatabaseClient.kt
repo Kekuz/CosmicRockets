@@ -20,10 +20,13 @@ class RoomDatabaseClient(context: Context) : DatabaseClient {
         database.launchDao?.insertAll(launches.map { DatabaseMapper.map(it) })
     }
 
-    override fun get(rocketId: String): List<LaunchDatabaseDto> {
-        val res = database.launchDao?.getAllByRocketId(rocketId)?.map { DatabaseMapper.map(it!!) } ?: listOf()
-        //Log.e("Launch got from db", res.toString())
-        return res
+    override fun getByRocketId(rocketId: String): List<LaunchDatabaseDto> {
+        return database.launchDao?.getAllByRocketId(rocketId)?.map { DatabaseMapper.map(it!!) }
+            ?: listOf()
 
+    }
+
+    override fun getById(id: String): LaunchDatabaseDto? {
+        return DatabaseMapper.mapForId(database.launchDao?.getById(id))
     }
 }

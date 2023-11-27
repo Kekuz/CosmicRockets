@@ -42,6 +42,21 @@ object LaunchMapper {
         )
     }
 
+    fun mapForId(input: LaunchDatabaseDto?): Launch? {
+        return  if(input == null){
+            null
+        }else{
+            Launch(
+                input.id,
+                input.rocketId,
+                input.name,
+                input.date,
+                input.success,
+            )
+        }
+
+    }
+
 
     private const val EMPTY_STRING = "-"
     private const val EMPTY_INT = 0

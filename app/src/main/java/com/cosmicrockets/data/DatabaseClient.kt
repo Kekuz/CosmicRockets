@@ -5,6 +5,8 @@ import com.cosmicrockets.data.db.dto.LaunchDatabaseDto
 interface DatabaseClient {
     fun save(launches: List<LaunchDatabaseDto>)
 
-    fun get(rocketId: String): List<LaunchDatabaseDto>
+    fun getByRocketId(rocketId: String): List<LaunchDatabaseDto>
+
+    fun getById(id: String): LaunchDatabaseDto?
 
 }

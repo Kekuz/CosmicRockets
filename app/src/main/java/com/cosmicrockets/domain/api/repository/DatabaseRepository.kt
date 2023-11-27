@@ -6,4 +6,6 @@ interface DatabaseRepository {
     fun saveLaunches(launches: List<Launch>)
 
     fun getLaunches(rocketId: String): List<Launch>
+
+    fun getLaunchById(id: String): Launch?
 }

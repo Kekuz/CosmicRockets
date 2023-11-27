@@ -15,6 +15,9 @@ interface LaunchDao {
     @Query("SELECT * FROM launch_database WHERE rocketId LIKE :rocketId")
     fun getAllByRocketId(rocketId: String?): List<LaunchDatabaseEntity?>?
 
+    @Query("SELECT * FROM launch_database WHERE id LIKE :id")
+    fun getById(id: String?): LaunchDatabaseEntity?
+
     /*@Insert
     fun insert(launch: Launch?)
 

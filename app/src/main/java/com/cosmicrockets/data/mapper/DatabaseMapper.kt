@@ -24,4 +24,19 @@ object DatabaseMapper {
             input.success,
         )
     }
+
+    fun mapForId(input: LaunchDatabaseEntity?): LaunchDatabaseDto? {
+        return if(input == null){
+            null
+        }else{
+            LaunchDatabaseDto(
+                input.id,
+                input.rocketId,
+                input.name,
+                input.date,
+                input.success,
+            )
+        }
+
+    }
 }

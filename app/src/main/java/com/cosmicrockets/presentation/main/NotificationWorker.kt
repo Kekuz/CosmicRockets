@@ -21,6 +21,7 @@ import com.cosmicrockets.domain.api.usecase.SearchLaunchByIdUseCase
 import com.cosmicrockets.domain.models.launch.Launch
 import com.cosmicrockets.domain.models.launch.LaunchResponse
 import com.cosmicrockets.ui.main.MainActivity
+import com.cosmicrockets.ui.state.LaunchesFragmentState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -50,28 +51,35 @@ class NotificationWorker(context: Context, params: WorkerParameters) :
                 override fun consume(launchResponse: LaunchResponse?, errorMessage: String?) {
                     CoroutineScope(Dispatchers.IO).launch {
                         if (launchResponse != null) {
-                            //_launches.postValue(launchResponse.docs)
-                            makeNotification(launchResponse.docs[0])
-                            ///databaseInteractor.saveLaunches(launchResponse.docs)
+                            databaseInteractor.getLaunchById(
+                                launchResponse.docs[0].id,
+                                object : DatabaseInteractor.DatabaseLaunchConsumer {
+                                    override fun consume(foundLaunch: Launch?) {
+                                        CoroutineScope(Dispatchers.IO).launch {
+                                            if (foundLaunch == null) {
+                                                makeNotification(launchResponse.docs[0])
+                                                databaseInteractor.saveLaunches(listOf(launchResponse.docs[0]))
+                                            }
+                                        }
+                                    }
+                                })
+                            Result.success()
                         }
                         if (errorMessage != null) {
-                            //getLaunchesFromDatabase(rocketId, errorMessage)
                             Result.retry()
                         }
                     }
                 }
-
             })
-
         return Result.success()
     }
+
 
     private fun makeNotification(launch: Launch) {
         val builder = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
             .setSmallIcon(R.drawable.notification_icon)
-            .setContentTitle("Состоялся новый космический запуск!")
-            //.setContentText("Нажмите чтобы посмотреть подробности...")
-            .setContentText(launch.name + launch.date)
+            .setContentTitle("Новый космический запуск ${launch.name} cостоялся ${launch.date}!")
+            .setContentText("Нажмите чтобы посмотреть подробности...")
             .setAutoCancel(true)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 

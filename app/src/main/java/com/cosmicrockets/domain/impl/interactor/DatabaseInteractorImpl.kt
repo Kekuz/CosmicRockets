@@ -23,4 +23,10 @@ class DatabaseInteractorImpl(private val repository: DatabaseRepository):Databas
         }
     }
 
+    override fun getLaunchById(id: String, consumer: DatabaseInteractor.DatabaseLaunchConsumer) {
+        CoroutineScope(Dispatchers.IO).launch {
+            consumer.consume(repository.getLaunchById(id))
+        }
+    }
+
 }
