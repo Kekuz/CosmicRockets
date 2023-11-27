@@ -6,10 +6,12 @@ import com.cosmicrockets.domain.api.repository.DatabaseRepository
 import com.cosmicrockets.domain.api.repository.LaunchRepository
 import com.cosmicrockets.domain.api.repository.RocketRepository
 import com.cosmicrockets.domain.api.repository.SettingsRepository
+import com.cosmicrockets.domain.api.usecase.SearchLastLaunchesUseCase
 import com.cosmicrockets.domain.api.usecase.SearchLaunchByIdUseCase
 import com.cosmicrockets.domain.api.usecase.SearchRocketsUseCase
 import com.cosmicrockets.domain.impl.interactor.DatabaseInteractorImpl
 import com.cosmicrockets.domain.impl.interactor.SettingsSavingInteractorImpl
+import com.cosmicrockets.domain.impl.usecase.SearchLastLaunchesUseCaseImpl
 import com.cosmicrockets.domain.impl.usecase.SearchLaunchByIdUseCaseImpl
 import com.cosmicrockets.domain.impl.usecase.SearchRocketsUseCaseImpl
 import dagger.Module
@@ -35,5 +37,9 @@ class DomainModule {
     @Provides
     fun provideDatabaseInteractor(databaseRepository: DatabaseRepository): DatabaseInteractor {
         return DatabaseInteractorImpl(databaseRepository)
+    }
+    @Provides
+    fun provideSearchLastLaunchesUseCase(launchRepository: LaunchRepository): SearchLastLaunchesUseCase{
+        return SearchLastLaunchesUseCaseImpl(launchRepository)
     }
 }

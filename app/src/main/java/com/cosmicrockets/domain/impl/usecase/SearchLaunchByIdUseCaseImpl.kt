@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 class SearchLaunchByIdUseCaseImpl(private val repository: LaunchRepository): SearchLaunchByIdUseCase {
     override fun execute(page: Int, rocketId: String, consumer: SearchLaunchByIdUseCase.LaunchConsumer) {
         CoroutineScope(Dispatchers.IO).launch {
-            when(val resource = repository.search(page, rocketId)) {
+            when(val resource = repository.searchByRocketId(page, rocketId)) {
                 is Resource.Success -> { consumer.consume(resource.data, null) }
                 is Resource.Error -> { consumer.consume(null, resource.message) }
             }

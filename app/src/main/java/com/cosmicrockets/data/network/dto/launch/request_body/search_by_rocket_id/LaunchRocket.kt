@@ -1,4 +1,4 @@
-package com.cosmicrockets.data.network.dto.launch.launch_request_body
+package com.cosmicrockets.data.network.dto.launch.request_body.search_by_rocket_id
 
 import com.google.gson.annotations.SerializedName
 
