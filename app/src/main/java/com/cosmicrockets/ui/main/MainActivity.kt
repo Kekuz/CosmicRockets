@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.cosmicrockets.databinding.ActivityMainBinding
@@ -22,12 +21,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         notificationPermission()
-        val workRequestNow = OneTimeWorkRequestBuilder<NotificationWorker>().build()
+
         val workRequestForTime =
-            PeriodicWorkRequestBuilder<NotificationWorker>(30, TimeUnit.MINUTES, 25, TimeUnit.MINUTES).build()
+            PeriodicWorkRequestBuilder<NotificationWorker>(30, TimeUnit.MINUTES, 25, TimeUnit.MINUTES)
+                .addTag("notification")
+                .build()
 
-
-        WorkManager.getInstance(this).enqueue(workRequestNow)
+        WorkManager.getInstance(this).cancelAllWorkByTag("notification")
+        WorkManager.getInstance(this).enqueue(workRequestForTime)
     }
 
     private fun notificationPermission() {

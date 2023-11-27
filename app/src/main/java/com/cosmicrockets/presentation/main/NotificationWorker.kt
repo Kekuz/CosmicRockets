@@ -7,14 +7,19 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
+import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.Navigation.findNavController
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.cosmicrockets.R
 import com.cosmicrockets.app.App
+import com.cosmicrockets.databinding.ActivityMainBinding
 import com.cosmicrockets.domain.api.interactor.DatabaseInteractor
 import com.cosmicrockets.domain.api.usecase.SearchLastLaunchesUseCase
 import com.cosmicrockets.domain.api.usecase.SearchLaunchByIdUseCase
@@ -25,9 +30,10 @@ import com.cosmicrockets.ui.state.LaunchesFragmentState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class NotificationWorker(context: Context, params: WorkerParameters) :
+class NotificationWorker(private val context: Context, params: WorkerParameters) :
     Worker(context, params) {
     @Inject
     lateinit var searchLastLaunchesUseCase: SearchLastLaunchesUseCase
@@ -83,6 +89,10 @@ class NotificationWorker(context: Context, params: WorkerParameters) :
             .setAutoCancel(true)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
+
+        //До диплинка я не додумался :((((((
+        //По этому просто открываем приложение при нажатии на уведомление
+        //Что поделать
         val intent = Intent(applicationContext, MainActivity::class.java)
 
         val pendingIntent =
