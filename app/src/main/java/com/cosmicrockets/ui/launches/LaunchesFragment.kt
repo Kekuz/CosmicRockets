@@ -1,15 +1,18 @@
 package com.cosmicrockets.ui.launches
 
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.cosmicrockets.R
 import com.cosmicrockets.app.App
 import com.cosmicrockets.databinding.FragmentLaunchesBinding
 import com.cosmicrockets.domain.api.interactor.DatabaseInteractor
@@ -63,6 +66,7 @@ class LaunchesFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -75,10 +79,18 @@ class LaunchesFragment : Fragment() {
         }
         viewModel.state.observe(activity as LifecycleOwner) {
             currentState = it
-            Log.e("state", it.toString())
             render(it)
         }
 
+        binding.launchSwipeRefresh.setProgressBackgroundColorSchemeResource(R.color.black)
+        val swipeColor = resources.getColor(R.color.light_gray)
+        binding.launchSwipeRefresh.setColorSchemeColors(swipeColor, swipeColor, swipeColor)
+
+        binding.launchSwipeRefresh.setOnRefreshListener {
+            launches.clear()
+            viewModel.recyclerRefreshed()
+            binding.launchSwipeRefresh.isRefreshing = false
+        }
 
     }
 
@@ -102,8 +114,6 @@ class LaunchesFragment : Fragment() {
     private fun showLaunches(listLaunches: List<Launch>) {
         launches.addAll(listLaunches)
         launchAdapter.notifyItemRangeChanged(launches.size, listLaunches.size)
-        /*binding.errorTv.isVisible = false
-        binding.reloadBtn.isVisible = false*/
         binding.launchesLoadingPb.isVisible = false
         binding.launchesLoadingBottomPb.isVisible = false
         binding.launchesErrorPb.isVisible = false
@@ -111,11 +121,12 @@ class LaunchesFragment : Fragment() {
     }
 
     private fun showError(listLaunches: List<Launch>, message: String) {
+        launches.clear()
         launches.addAll(listLaunches)
-        launchAdapter.notifyItemRangeChanged(launches.size, listLaunches.size)
+        launchAdapter.notifyDataSetChanged()
         binding.launchesLoadingPb.isVisible = false
         binding.launchesLoadingBottomPb.isVisible = false
         binding.launchesErrorPb.isVisible = true
-
+        binding.launchesEmptyTv.isVisible = false
     }
 }

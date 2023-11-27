@@ -30,12 +30,9 @@ class LaunchViewModel(
     var hasNextPage = true
     private var pageNumber = 1
 
-    //var isDatabaseLoaded = false
 
     init {
         request()
-        //databaseSetValue("12")
-        ///databaseRequest("12")
     }
 
     fun request() {
@@ -59,11 +56,9 @@ class LaunchViewModel(
                             hasNextPage = launchResponse.hasNextPage
                             if (hasNextPage) pageNumber++
                             databaseInteractor.saveLaunches(launchResponse.docs)
-                            //isDatabaseLoaded = false
                         }
                         if (errorMessage != null) {
                             getLaunchesFromDatabase(rocketId, errorMessage)
-                            ///isDatabaseLoaded = true
                         }
                     }
                 }
@@ -76,7 +71,7 @@ class LaunchViewModel(
         databaseInteractor.getLaunches(rocketId, object : DatabaseInteractor.DatabaseConsumer {
             override fun consume(foundLaunches: List<Launch>) {
                 CoroutineScope(Dispatchers.IO).launch {
-                    Log.e("Launches from DB", foundLaunches.toString())
+                    Log.d("Launches from DB", foundLaunches.toString())
                     val error = LaunchesFragmentState.Error(foundLaunches, errorMessage)
                     _state.postValue(error)
                 }
@@ -85,13 +80,11 @@ class LaunchViewModel(
         })
     }
 
-    private fun saveLaunchesInDatabase(launches: List<Launch>) {
-        databaseInteractor.saveLaunches(launches)
-    }
-
-    private fun getMockListLaunch(rocketId: String):List<Launch>{
-        ///return listOf(Launch(Random(123).toString(),rocketId,"RazakSat", "сегодня", true))
-        return listOf(Launch("java.util.Random@66db7cc",rocketId,"RazakSat", "сегодня", true))
+    fun recyclerRefreshed(){
+        hasNextPage = true
+        pageNumber = 1
+        isFirstLoad = true
+        request()
     }
 
 }
